@@ -5,11 +5,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Thari Ofertas</title>
 <meta name="description" content="Thari Ofertas — os melhores achados para economizar. Ofertas, cupons e promoções da Shopee, Mercado Livre e mais, separadas por nicho.">
-<meta property="og:title" content="Thari Ofertas">
-<meta property="og:description" content="Os melhores achados para economizar! Veja as ofertas do dia e entre no grupo.">
-<meta property="og:image" content="logo.png">
+<link rel="canonical" href="https://thariofertas.com.br/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="Thari Ofertas">
+<meta property="og:url" content="https://thariofertas.com.br/">
+<meta property="og:title" content="Thari Ofertas — os melhores achados para economizar">
+<meta property="og:description" content="Ofertas e cupons do dia da Shopee, Mercado Livre e mais, separados por nicho.">
+<meta property="og:image" content="https://thariofertas.com.br/logo.png">
+<meta property="og:image:width" content="344">
+<meta property="og:image:height" content="344">
+<meta name="twitter:card" content="summary">
 <meta name="theme-color" content="#0b2a5b">
-<link rel="icon" href="logo.png" type="image/png">
+<link rel="icon" href="logo-96.png" type="image/png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -120,11 +129,15 @@
   .card{position:relative;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;
     box-shadow:var(--shadow);transition:transform .18s,box-shadow .18s;animation:rise .35s ease both}
   .card:hover{transform:translateY(-4px);box-shadow:0 16px 36px rgba(13,27,51,.14)}
+  .card:focus-within{box-shadow:0 0 0 3px var(--orange-2), var(--shadow)}
+  .card-link{color:inherit;text-decoration:none;outline:none}
+  .card-link::after{content:"";position:absolute;inset:0;z-index:1}
+  .card .over{position:relative;z-index:2}
   .thumb{position:relative;aspect-ratio:1/1;background:#fff;display:grid;place-items:center;overflow:hidden;border-bottom:1px solid var(--line)}
   .thumb img{width:100%;height:100%;object-fit:contain;transition:transform .3s}
   .card:hover .thumb img{transform:scale(1.04)}
   .thumb.empty{background:linear-gradient(135deg,#f7f9fd,#eef2f9)}
-  .thumb.empty img{width:42%;height:42%;opacity:.3;border-radius:50%}
+  .thumb.empty img{width:42%;height:42%;opacity:.3;border-radius:50%;object-fit:contain}
   .off{position:absolute;top:12px;left:12px;background:var(--green);color:#fff;font-size:13px;font-weight:800;padding:4px 10px;border-radius:8px}
   .loja{position:absolute;top:12px;right:12px;background:rgba(255,255,255,.95);color:var(--ink);border:1px solid var(--line);font-size:11px;font-weight:700;padding:3px 9px;border-radius:8px}
   .body{padding:14px 16px 16px;display:flex;flex-direction:column;gap:8px;flex:1}
@@ -138,9 +151,19 @@
   .cupom b{font-size:13px;letter-spacing:.5px}
   .copy{all:unset;cursor:pointer;font-size:12px;font-weight:700;color:#fff;background:var(--navy);padding:5px 10px;border-radius:7px}
   .copy:focus-visible{outline:3px solid var(--orange-2);outline-offset:2px}
-  .buy{display:flex;align-items:center;justify-content:center;gap:6px;text-decoration:none;color:#fff;font-weight:700;font-size:15px;
+  .buy{position:relative;display:flex;align-items:center;justify-content:center;gap:6px;text-decoration:none;color:#fff;font-weight:700;font-size:15px;
     background:linear-gradient(135deg,var(--orange-2),var(--orange));padding:12px;border-radius:12px;transition:filter .15s}
-  .buy:hover{filter:brightness(1.05)}
+  .card:hover .buy{filter:brightness(1.05)}
+  .actions{display:flex;gap:8px}
+  .actions .buy{flex:1}
+  .wa{display:grid;place-items:center;flex:0 0 46px;border-radius:12px;background:#25D366;color:#fff;transition:filter .15s}
+  .wa:hover{filter:brightness(1.07)}
+  .wa svg{width:22px;height:22px}
+  .wa:focus-visible{outline:3px solid var(--orange-2);outline-offset:2px}
+  .flags{display:flex;gap:6px;flex-wrap:wrap}
+  .flag{font-size:11px;font-weight:700;padding:2px 8px;border-radius:6px;background:#e6f7f5;color:#0b7a6f}
+  .flag.cp{background:var(--orange-soft);color:#c2550a}
+  .adult{font-size:10.5px;line-height:1.35;color:#8a5a00;background:#fff6dd;border-radius:8px;padding:5px 8px}
   .when{font-size:11px;color:#94a3b8;text-align:center}
 
   .empty-state{grid-column:1/-1;display:grid;grid-template-columns:auto 1fr auto;gap:24px;align-items:center;
@@ -205,7 +228,17 @@
     .brand small{display:none}
     .topbar .cta{padding:9px 12px;font-size:13px}
     .topbar .cta .lbl-long{display:none}
-    .stats{gap:16px}
+    .hero .container{padding-top:26px;padding-bottom:52px}
+    .hero h1{font-size:28px;margin-top:12px}
+    .hero p.lead{font-size:14px;margin-top:10px}
+    .hero-actions{margin-top:18px;gap:8px}
+    .hero .cta,.ghost{padding:11px 16px;font-size:14px}
+    .stats{display:none}
+    .wave{height:28px}
+    #nichos{display:none}
+    section.block{padding-top:36px}
+    .wa{flex-basis:40px}
+    .wa svg{width:20px;height:20px}
     .nichos{grid-template-columns:repeat(2,1fr);gap:10px}
     .nicho-card{padding:14px;flex-direction:row;align-items:center}
     .nicho-card .ic{width:40px;height:40px;font-size:20px;flex:0 0 auto}
@@ -215,7 +248,9 @@
     .body{padding:10px 10px 12px;gap:6px}
     .card h3{font-size:13px}
     .now{font-size:19px}
-    .buy{font-size:14px;padding:10px}
+    .buy{font-size:13px;padding:10px 6px;white-space:nowrap}
+    .buy span{display:none}
+    .sec-head{margin-bottom:12px}
     .off,.loja{top:8px}.off{left:8px}.loja{right:8px}
     .sort{flex:1}
     .search{max-width:none}
@@ -230,7 +265,7 @@
 <header class="topbar">
   <div class="container">
     <a class="brand" href="#" aria-label="Thari Ofertas, início">
-      <img src="logo.png" alt="" width="44" height="44">
+      <img src="logo-96.png" alt="" width="44" height="44">
       <div><span>Thari Ofertas</span><small>Os melhores achados</small></div>
     </a>
     <nav class="menu" aria-label="Menu">
@@ -263,7 +298,7 @@
     </div>
     <div class="hero-art" aria-hidden="true">
       <div class="halo"></div>
-      <img class="logo" src="logo.png" alt="" width="260" height="260">
+      <img class="logo" src="logo.webp" alt="" width="260" height="260">
       <div class="tag t1"><span class="e">🏷️</span>Cupom de desconto</div>
       <div class="tag t2"><span class="e">🔥</span>Oferta do dia</div>
       <div class="tag t3"><span class="e">💸</span>Preço baixo</div>
@@ -274,7 +309,7 @@
 
 <main class="container">
   <section class="block" id="nichos" aria-labelledby="nichos-title">
-    <div class="sec-head">
+    <div class="sec-head" id="nichos-head">
       <div><span class="kicker">Categorias</span><h2 id="nichos-title">Compre por nicho</h2></div>
       <p>Toque em um nicho para filtrar as ofertas.</p>
     </div>
@@ -328,7 +363,7 @@
 <footer>
   <div class="container">
     <div>
-      <a class="brand" href="#"><img src="logo.png" alt="" width="40" height="40"><div><span>Thari Ofertas</span></div></a>
+      <a class="brand" href="#"><img src="logo-96.png" alt="" width="40" height="40"><div><span>Thari Ofertas</span></div></a>
       <p>Preços e disponibilidade sujeitos a alteração pelas lojas. Alguns links são de afiliado: podemos ganhar uma comissão sem custo extra para você.</p>
     </div>
     <nav aria-label="Rodapé">
@@ -353,10 +388,36 @@ const NICHOS = {
   pet:         {nome: 'Pet',               emoji: '🐾', cor: '#e9f8ef'},
   esporte:     {nome: 'Esporte & Fitness', emoji: '🏋️', cor: '#e6f7fb'},
   mercado:     {nome: 'Mercado',           emoji: '🛒', cor: '#eef7e6'},
+  bebidas:     {nome: 'Bebidas',           emoji: '🍷', cor: '#fbe9ec'},
+  automotivo:  {nome: 'Automotivo',        emoji: '🚗', cor: '#e9eef8'},
+  viagem:      {nome: 'Viagem',            emoji: '🧳', cor: '#eaf6f1'},
   ferramentas: {nome: 'Ferramentas',       emoji: '🔧', cor: '#eef1f6'},
   outros:      {nome: 'Outros achados',    emoji: '✨', cor: '#fdf3e1'},
 };
 const PAGE = 24;
+const SITE = 'https://thariofertas.com.br';
+
+// Corrige o nicho que vem do grupo quando o nome do produto deixa claro (a primeira regra que bater vence).
+const REGRAS = [
+  ['infantil',   /\b(infantil|crian[çc]as?|beb[êe]s?|kids)\b/],
+  ['bebidas',    /\b(whisk(y|ey)|vinho|espumante|champagne|cerveja|vodka|gin|licor|tequila|rum|cacha[çc]a|johnnie walker|chivas|jack daniel)/],
+  ['automotivo', /\b(pneus?|automotiv|compressor de ar|calibrador|auxiliar partida|para-?brisa|[óo]leo de motor|som automotivo)/],
+  ['viagem',     /\b(mala|malas|bagagem|necessaire)\b/],
+  ['esporte',    /\b(whey|creatina|pr[ée]-?treino|bcaa|halter|anilha|esteira|bicicleta)/],
+  ['beleza',     /\b(leave[ -]?in|capilar|shampoo|condicionador|perfume|eau de (toilette|parfum)|hidratante|maquiagem|protetor solar|skincare|s[ée]rum|body splash|cerave|eucerin|wella|revlon)/],
+  ['mercado',    /\b(panettone|chocotone|chocolate|papel higi[êe]nico|caf[ée] em|sab[ãa]o|amaciante|detergente)/],
+];
+function ajustar(p) {
+  let titulo = String(p.titulo || '');
+  const pix = /\(\s*(pre[çc]o\s+)?(no|via)\s+pix\s*\)/i.test(titulo);
+  const comCupom = /\(\s*pre[çc]o\s+com\s+cupom\s*\)/i.test(titulo);
+  titulo = titulo.replace(/\s*\(\s*(pre[çc]o\s+)?(no|via)\s+pix\s*\)/ig, '')
+                 .replace(/\s*\(\s*pre[çc]o\s+com\s+cupom\s*\)/ig, '').trim();
+  const t = norm(titulo);
+  const regra = REGRAS.find(([, re]) => re.test(t));
+  const nicho = regra ? regra[0] : (NICHOS[p.nicho] ? p.nicho : 'outros');
+  return {...p, titulo, pix, comCupom, nicho};
+}
 const brl = v => v == null ? '' : v.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'});
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const norm = s => String(s ?? '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
@@ -384,11 +445,11 @@ function contagem() {
 
 function renderNichos() {
   const cont = contagem();
-  document.getElementById('nichos-grid').innerHTML = Object.entries(NICHOS).map(([id, n]) => {
-    const q = cont[id] || 0;
+  document.getElementById('nichos-grid').innerHTML = Object.entries(NICHOS).filter(([id]) => cont[id]).map(([id, n]) => {
+    const q = cont[id];
     return `<button type="button" class="nicho-card" data-n="${id}" aria-pressed="${filtro === id}">
       <span class="ic" style="background:${n.cor}" aria-hidden="true">${n.emoji}</span>
-      <span><strong>${n.nome}</strong><br><small>${q ? `${q} ${q === 1 ? 'oferta' : 'ofertas'}` : 'Em breve'}</small></span>
+      <span><strong>${n.nome}</strong><br><small>${q} ${q === 1 ? 'oferta' : 'ofertas'}</small></span>
     </button>`;
   }).join('');
 }
@@ -407,22 +468,36 @@ function renderChips() {
 function card(p) {
   const nicho = NICHOS[p.nicho] || NICHOS.outros;
   const off = desconto(p);
+  const href = esc(safeUrl(p.link));
   const img = p.imagem
-    ? `<div class="thumb"><img src="${esc(p.imagem)}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null;this.parentNode.classList.add('empty');this.src='logo.png'"></div>`
-    : `<div class="thumb empty"><img src="logo.png" alt="" loading="lazy"></div>`;
+    ? `<div class="thumb"><img src="${esc(p.imagem)}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null;this.parentNode.classList.add('empty');this.src='logo-96.png'"></div>`
+    : `<div class="thumb empty"><img src="logo-96.png" alt="" loading="lazy"></div>`;
+  const zap = encodeURIComponent(
+    `🔥 ${p.titulo}\n` +
+    (p.preco ? `💰 ${brl(p.preco)}${p.pix ? ' no Pix' : ''}${off >= 5 ? ` (-${off}%)` : ''}\n` : '') +
+    (p.cupom ? `🏷️ Cupom: ${p.cupom}\n` : '') +
+    `🛒 ${safeUrl(p.link)}\n\nMais ofertas: ${SITE}`);
+  const track = `oferta-${esc(String(p.id))}`;
   return `<article class="card">
     ${img}
     ${off >= 5 ? `<span class="off">-${off}%</span>` : ''}
     ${p.loja ? `<span class="loja">${esc(p.loja)}</span>` : ''}
     <div class="body">
       <span class="nicho">${nicho.emoji} ${esc(nicho.nome)}</span>
-      <h3>${esc(p.titulo)}</h3>
+      <h3><a class="card-link" href="${href}" target="_blank" rel="sponsored nofollow noopener" data-goatcounter-click="${track}" data-goatcounter-title="${esc(p.titulo)}">${esc(p.titulo)}</a></h3>
       <div class="prices">
         <span class="was">${p.preco_antigo ? brl(p.preco_antigo) : ''}</span>
         ${p.preco ? `<span class="now">${brl(p.preco)}${p.preco_antigo ? `<small>economize ${brl(p.preco_antigo - p.preco)}</small>` : ''}</span>` : ''}
       </div>
-      ${p.cupom ? `<div class="cupom"><span>Cupom <b>${esc(p.cupom)}</b></span><button type="button" class="copy" data-c="${esc(p.cupom)}">Copiar</button></div>` : ''}
-      <a class="buy" href="${esc(safeUrl(p.link))}" target="_blank" rel="sponsored nofollow noopener">Ver oferta <span aria-hidden="true">→</span></a>
+      ${p.pix || p.comCupom ? `<div class="flags">${p.pix ? '<span class="flag">💠 Preço no Pix</span>' : ''}${p.comCupom ? '<span class="flag cp">🏷️ Preço com cupom</span>' : ''}</div>` : ''}
+      ${p.cupom ? `<div class="cupom over"><span>Cupom <b>${esc(p.cupom)}</b></span><button type="button" class="copy" data-c="${esc(p.cupom)}">Copiar</button></div>` : ''}
+      ${p.nicho === 'bebidas' ? '<p class="adult">🔞 Beba com moderação. Venda proibida para menores de 18 anos.</p>' : ''}
+      <div class="actions">
+        <span class="buy" aria-hidden="true">Ver oferta <span>→</span></span>
+        <a class="wa over" href="https://wa.me/?text=${zap}" target="_blank" rel="noopener" aria-label="Compartilhar no WhatsApp: ${esc(p.titulo)}" data-goatcounter-click="whatsapp-${esc(String(p.id))}">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.4.1-.6.3a2.6 2.6 0 0 0-.8 1.9 4.5 4.5 0 0 0 .9 2.4 10.3 10.3 0 0 0 4 3.5c1.5.6 2 .7 2.8.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2l-.5-.2z"/></svg>
+        </a>
+      </div>
       <span class="when">${quando(p.data)}</span>
     </div>
   </article>`;
@@ -470,6 +545,7 @@ document.getElementById('ordem').addEventListener('change', e => { ordem = e.tar
 document.getElementById('more').addEventListener('click', () => { mostrando += PAGE; render(); });
 document.getElementById('grid').addEventListener('click', async e => {
   const b = e.target.closest('.copy'); if (!b) return;
+  e.preventDefault(); e.stopPropagation();
   try { await navigator.clipboard.writeText(b.dataset.c); b.textContent = 'Copiado!'; }
   catch { b.textContent = b.dataset.c; }
   setTimeout(() => b.textContent = 'Copiar', 1800);
@@ -482,13 +558,16 @@ new IntersectionObserver(([e]) => tb.classList.toggle('stuck', e.intersectionRat
 fetch('products.json?v=' + Math.floor(Date.now() / 300000))
   .then(r => r.ok ? r.json() : Promise.reject(r.status))
   .then(d => {
-    produtos = (d.produtos || []).filter(p => p && p.link);
+    produtos = (d.produtos || []).filter(p => p && p.link).map(ajustar);
     document.getElementById('status').textContent = produtos.length
       ? `${produtos.length} ${produtos.length === 1 ? 'oferta' : 'ofertas'} no ar agora`
       : 'As ofertas do grupo aparecem aqui automaticamente.';
   })
   .catch(() => { document.getElementById('status').textContent = 'Não foi possível carregar as ofertas agora.'; })
-  .finally(() => { renderNichos(); renderChips(); render(); });
+  .finally(() => {
+    renderNichos(); renderChips(); render();
+    if (!produtos.length) document.getElementById('nichos').hidden = true;
+  });
 </script>
 </body>
 </html>
