@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
-"""Monta products.json juntando um arquivo por oferta (pasta offers/ da branch dados).
+"""Junta as ofertas novas (um arquivo por oferta) ao products.json do site.
 
-Uso: python3 scripts/build_products.py <pasta offers> <products.json>
+Uso: python3 scripts/build_products.py <pasta dados> <products.json>
 
-Cada oferta e um JSON pequeno (id, titulo, preco, preco_antigo, link, loja, nicho, data, imagem).
-Produtos que vieram de outra fonte (id sem o prefixo 'ml-') sao mantidos.
-Para tirar uma oferta do site, apague o arquivo dela em offers/ na branch dados.
+- <pasta dados>/offers/*.json: uma oferta por arquivo (id, titulo, preco, preco_antigo,
+  link, loja, nicho, data, imagem). Entra no site ou atualiza a oferta com o mesmo id.
+- <pasta dados>/removed.txt: um id por linha; essas ofertas saem do site.
+- O que ja esta no products.json e mantido (ate 300 ofertas, das mais novas).
 """
 import glob
 import json
@@ -17,28 +18,34 @@ MAX_PRODUCTS = 300
 
 
 def main():
-    offers_dir, products_path = sys.argv[1], sys.argv[2]
+    dados, products_path = sys.argv[1], sys.argv[2]
     try:
         with open(products_path, encoding="utf-8") as f:
             data = json.load(f)
     except FileNotFoundError:
         data = {"atualizado": None, "produtos": []}
-    others = [p for p in data.get("produtos", []) if not str(p.get("id", "")).startswith("ml-")]
-    ours = []
-    for path in glob.glob(os.path.join(offers_dir, "*.json")):
+    by_id = {p["id"]: p for p in data.get("produtos", []) if "id" in p}
+    for path in glob.glob(os.path.join(dados, "offers", "*.json")):
         try:
             with open(path, encoding="utf-8") as f:
-                ours.append(json.load(f))
+                p = json.load(f)
+            by_id[p["id"]] = p
         except Exception as e:  # arquivo quebrado nao derruba o site
             print(f"ignorado {path}: {e}")
-    prods = sorted(ours + others, key=lambda p: p.get("data") or 0, reverse=True)[:MAX_PRODUCTS]
+    removed = set()
+    rpath = os.path.join(dados, "removed.txt")
+    if os.path.exists(rpath):
+        with open(rpath, encoding="utf-8") as f:
+            removed = {l.split("#")[0].strip() for l in f if l.split("#")[0].strip()}
+    prods = [p for i, p in by_id.items() if i not in removed]
+    prods = sorted(prods, key=lambda p: p.get("data") or 0, reverse=True)[:MAX_PRODUCTS]
     if prods == data.get("produtos"):
         print("sem mudanca")
         return
     with open(products_path, "w", encoding="utf-8") as f:
         json.dump({"atualizado": int(time.time()), "produtos": prods}, f, ensure_ascii=False, separators=(",", ":"))
         f.write("\n")
-    print(f"atualizado: {len(ours)} ofertas + {len(others)} de outras fontes (mostrando {len(prods)})")
+    print(f"atualizado: {len(prods)} ofertas no site ({len(removed)} removidas)")
 
 
 if __name__ == "__main__":
