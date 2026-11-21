@@ -3,7 +3,7 @@ name: Montar ofertas do site
 on:
   push:
     branches: [dados]
-    paths: ["offers/**"]
+    paths: ["offers/**", "removed.txt"]
   workflow_dispatch: {}
 
 permissions:
@@ -29,7 +29,7 @@ jobs:
         with:
           python-version: "3.12"
       - name: Juntar ofertas em products.json
-        run: python3 site/scripts/build_products.py dados/offers site/products.json
+        run: python3 site/scripts/build_products.py dados site/products.json
       - name: Salvar no site
         working-directory: site
         run: |
