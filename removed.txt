@@ -1,0 +1,14 @@
+ml-3e0f6e30d721  # 2026-11-22 preço subiu: R$ 49,99 -> R$ 110,90
+ml-0ba7c9131521  # 2026-11-22 preço subiu: R$ 570,39 -> R$ 712,99
+ml-a81c0b2471f4  # 2026-11-22 preço subiu: R$ 164,90 -> R$ 229,90
+ml-41f89d6d9b2a  # 2026-11-22 preço subiu: R$ 192,68 -> R$ 249,90
+ml-19e080bd4fcb  # 2026-11-22 preço subiu: R$ 129,00 -> R$ 153,90
+ml-fe1ce987ba18  # 2026-11-22 preço subiu: R$ 2.678,43 -> R$ 3.376,39
+ml-07de8b0099ed  # 2026-11-22 preço subiu: R$ 331,55 -> R$ 470,31
+ml-161c934baf69  # 2026-11-22 preço subiu: R$ 2.751,89 -> R$ 3.232,04
+ml-d29b83d1fe7c  # 2026-11-22 preço subiu: R$ 302,00 -> R$ 353,77
+ml-d3a25c75a26e  # 2026-11-22 preço subiu: R$ 1.177,90 -> R$ 1.449,00
+ml-d2d23534e135  # 2026-11-22 preço subiu: R$ 57,99 -> R$ 64,89
+ml-58cce8e483c7  # 2026-11-22 preço subiu: R$ 140,61 -> R$ 162,63
+ml-f47df450fb89  # 2026-11-22 preço subiu: R$ 175,00 -> R$ 239,00
+ml-d45f3f22f8ae  # 2026-11-22 preço subiu: R$ 142,42 -> R$ 159,94
