@@ -12,3 +12,45 @@ ml-d2d23534e135  # 2026-11-22 preço subiu: R$ 57,99 -> R$ 64,89
 ml-58cce8e483c7  # 2026-11-22 preço subiu: R$ 140,61 -> R$ 162,63
 ml-f47df450fb89  # 2026-11-22 preço subiu: R$ 175,00 -> R$ 239,00
 ml-d45f3f22f8ae  # 2026-11-22 preço subiu: R$ 142,42 -> R$ 159,94
+ml-6ed55ccf94dc  # 2026-11-25 preço subiu de R$ 49.03 para R$ 53.29
+ml-8cc44ca5627e  # 2026-11-25 preço subiu de R$ 187.85 para R$ 204.45
+ml-2dc367065cd8  # 2026-11-25 preço subiu de R$ 238.42 para R$ 274.55
+ml-a1d23c7028b9  # 2026-11-25 preço subiu de R$ 99.43 para R$ 104.66
+ml-7d6208eb00f5  # 2026-11-25 preço subiu de R$ 1979.00 para R$ 2099.00
+ml-af0d6ffc8d52  # 2026-11-25 preço subiu de R$ 222.74 para R$ 293.00
+ml-707cdd561891  # 2026-11-25 preço subiu de R$ 1983.71 para R$ 2179.90
+ml-62e76031b3f1  # 2026-11-25 preço subiu de R$ 125.91 para R$ 144.52
+ml-1009ebf4736b  # 2026-11-25 preço subiu de R$ 149.99 para R$ 169.80
+ml-c4a124e8b9c9  # 2026-11-25 preço subiu de R$ 15.59 para R$ 34.90
+ml-bb97d34addb8  # 2026-11-25 preço subiu de R$ 3499.20 para R$ 3879.00
+ml-40df79e89593  # 2026-11-25 preço subiu de R$ 56.89 para R$ 67.90
+ml-9c523cd9665a  # 2026-11-25 preço subiu de R$ 88.27 para R$ 129.00
+ml-004aede49613  # 2026-11-25 preço subiu de R$ 1394.07 para R$ 1516.83
+ml-fc4b6757aebe  # 2026-11-25 preço subiu de R$ 539.90 para R$ 599.00
+ml-3e84561cfbde  # 2026-11-25 preço subiu de R$ 362.25 para R$ 483.00
+ml-ec479f2a4a3d  # 2026-11-25 preço subiu de R$ 989.91 para R$ 1044.90
+ml-553d6acaef9d  # 2026-11-25 preço subiu de R$ 167.77 para R$ 182.09
+ml-163cca619739  # 2026-11-25 preço subiu de R$ 216.00 para R$ 269.00
+ml-b0d2ec48260f  # 2026-11-25 preço subiu de R$ 55.17 para R$ 57.94
+ml-c7239d2dc48d  # 2026-11-25 preço subiu de R$ 175.50 para R$ 225.31
+ml-d07ea5e83bb1  # 2026-11-25 preço subiu de R$ 964.50 para R$ 1286.00
+ml-835136e24d6d  # 2026-11-25 preço subiu de R$ 94.90 para R$ 143.90
+ml-06bf760363ca  # 2026-11-25 preço subiu de R$ 202.81 para R$ 273.90
+ml-2123fd1cde7e  # 2026-11-25 preço subiu de R$ 1299.00 para R$ 1749.00
+ml-9f940cc2f415  # 2026-11-25 preço subiu de R$ 999.40 para R$ 1086.30
+ml-05a5b7f546d5  # 2026-11-25 preço subiu de R$ 170.10 para R$ 187.05
+ml-966d9bfc313d  # 2026-11-25 preço subiu de R$ 3779.99 para R$ 4666.75
+ml-e5da582e028e  # 2026-11-25 preço subiu de R$ 3499.00 para R$ 4027.06
+ml-ab6a26ec03a9  # 2026-11-25 preço subiu de R$ 263.99 para R$ 299.90
+ml-250a66efe626  # 2026-11-25 preço subiu de R$ 574.14 para R$ 603.00
+ml-336547c4a890  # 2026-11-25 preço subiu de R$ 42.56 para R$ 47.29
+ml-f852dbb2cabe  # 2026-11-25 preço subiu de R$ 454.91 para R$ 631.90
+ml-230729f2d130  # 2026-11-25 preço subiu de R$ 1079.10 para R$ 1198.00
+ml-fc759578dd9f  # 2026-11-25 preço subiu de R$ 1191.99 para R$ 1329.00
+ml-c3b33da63374  # 2026-11-25 link de afiliado leva a perfil vazio
+ml-6f6f27d1640d  # 2026-11-25 link de afiliado leva a perfil vazio
+ml-c2277d8aaf1f  # 2026-11-25 link de afiliado leva a perfil vazio
+ml-f52e0183a610  # 2026-11-25 link de afiliado leva a perfil vazio
+ml-c0f57f796853  # 2026-11-25 link de afiliado leva a perfil vazio
+ml-4ae5e028a779  # 2026-11-25 link de afiliado leva a perfil vazio
+ml-27067ed3a41d  # 2026-11-25 link de afiliado leva a perfil vazio
