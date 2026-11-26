@@ -424,7 +424,7 @@ const brl = v => v == null ? '' : v.toLocaleString('pt-BR', {style: 'currency', 
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const norm = s => String(s ?? '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
 const safeUrl = u => /^https?:\/\//i.test(u || '') ? u : '#';
-const desconto = p => p.preco && p.preco_antigo ? Math.round((1 - p.preco / p.preco_antigo) * 100) : 0;
+const desconto = p => p.preco && p.preco_antigo ? Math.round((1 - p.preco / p.preco_antigo) * 100) : (p.desconto || 0);
 
 function quando(ts) {
   if (!ts) return '';
@@ -488,7 +488,7 @@ function card(p) {
       <span class="nicho">${nicho.emoji} ${esc(nicho.nome)}</span>
       <h3><a class="card-link" href="${href}" target="_blank" rel="sponsored nofollow noopener" data-goatcounter-click="${track}" data-goatcounter-title="${esc(p.titulo)}">${esc(p.titulo)}</a></h3>
       <div class="prices">
-        <span class="was">${p.preco_antigo ? brl(p.preco_antigo) : ''}</span>
+        <span class="was">${p.preco_antigo ? brl(p.preco_antigo) : (p.desconto ? `${p.desconto}% OFF na loja` : '')}</span>
         ${p.preco ? `<span class="now">${brl(p.preco)}${p.preco_antigo ? `<small>economize ${brl(p.preco_antigo - p.preco)}</small>` : ''}</span>` : ''}
       </div>
       ${p.pix || p.comCupom ? `<div class="flags">${p.pix ? '<span class="flag">💠 Preço no Pix</span>' : ''}${p.comCupom ? '<span class="flag cp">🏷️ Preço com cupom</span>' : ''}</div>` : ''}
