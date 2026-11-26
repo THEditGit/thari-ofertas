@@ -488,7 +488,7 @@ function card(p) {
       <span class="nicho">${nicho.emoji} ${esc(nicho.nome)}</span>
       <h3><a class="card-link" href="${href}" target="_blank" rel="sponsored nofollow noopener" data-goatcounter-click="${track}" data-goatcounter-title="${esc(p.titulo)}">${esc(p.titulo)}</a></h3>
       <div class="prices">
-        <span class="was">${p.preco_antigo ? brl(p.preco_antigo) : (p.desconto ? `${p.desconto}% OFF na loja` : '')}</span>
+        <span class="was">${p.preco_antigo ? brl(p.preco_antigo) : (p.desconto ? `<b style="text-decoration:none;display:inline-block;color:#0f8a3c">${p.desconto}% OFF na loja</b>` : '')}</span>
         ${p.preco ? `<span class="now">${brl(p.preco)}${p.preco_antigo ? `<small>economize ${brl(p.preco_antigo - p.preco)}</small>` : ''}</span>` : ''}
       </div>
       ${p.pix || p.comCupom ? `<div class="flags">${p.pix ? '<span class="flag">💠 Preço no Pix</span>' : ''}${p.comCupom ? '<span class="flag cp">🏷️ Preço com cupom</span>' : ''}</div>` : ''}
