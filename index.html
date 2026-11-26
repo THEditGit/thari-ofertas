@@ -178,6 +178,27 @@
   .more-wrap button{font:700 14px "Poppins",system-ui,sans-serif;color:var(--navy);cursor:pointer;background:#fff;border:1px solid var(--line);padding:12px 26px;border-radius:12px;box-shadow:var(--shadow)}
   .more-wrap button:hover{border-color:var(--navy)}
 
+  /* ---------- Não encontrou? (busca na hora, servidor do Thari) ---------- */
+  .pedir{display:grid;grid-template-columns:1fr 1.1fr;gap:28px;align-items:center;color:#fff;border-radius:24px;padding:32px 36px;
+    background:radial-gradient(500px 260px at 100% 0%, rgba(255,165,58,.45), transparent 60%), linear-gradient(135deg,var(--navy-2),var(--navy))}
+  .pedir .kicker{color:var(--orange-2)}
+  .pedir h2{font-size:clamp(22px,3vw,28px);font-weight:800;letter-spacing:-.4px}
+  .pedir p{color:#c7d6f2;font-size:15px;margin-top:4px}
+  .pedir-form{display:flex;gap:10px;flex-wrap:wrap}
+  .pedir-form .search{max-width:none;flex:1 1 240px;padding:13px 16px}
+  .pedir-form .cta{border:0;cursor:pointer;font:700 15px "Poppins",system-ui,sans-serif;padding:13px 22px}
+  .pedir-form .cta:disabled{opacity:.7;cursor:wait;transform:none}
+  .pedir-msg{margin-top:18px;color:var(--muted);font-size:14px;min-height:1.3em;display:flex;align-items:center;gap:10px}
+  .pedir-msg.erro{color:#b42318}
+  .pedir-msg .spin{width:16px;height:16px;border-radius:50%;border:2.5px solid var(--line);border-top-color:var(--orange);animation:girar .8s linear infinite}
+  .pedir-grid:empty{display:none}
+  .card .meta{font-size:12px;color:var(--muted)}
+  .more-wrap button small{font-weight:500;color:var(--muted)}
+  .empty-state .cta{border:0;cursor:pointer;font:700 14px "Poppins",system-ui,sans-serif}
+  @keyframes girar{to{transform:rotate(360deg)}}
+  @media (max-width:760px){.pedir{grid-template-columns:1fr;padding:26px 22px;text-align:center}
+    .pedir-form .search input{text-align:left}.pedir-form .cta{flex:1 1 100%;justify-content:center}}
+
   /* ---------- Como funciona / Grupo ---------- */
   .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
   .step{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow)}
@@ -337,6 +358,27 @@
     </div>
     <div class="grid" id="grid" aria-live="polite"></div>
     <div class="more-wrap" id="more-wrap" hidden><button type="button" id="more">Ver mais ofertas</button></div>
+  </section>
+
+  <section class="block" id="pedir" aria-labelledby="pedir-title" hidden>
+    <div class="pedir">
+      <div>
+        <span class="kicker">Busca na hora</span>
+        <h2 id="pedir-title">Não encontrou o produto?</h2>
+        <p>Digite o que você precisa e a gente busca a melhor oferta agora na Shopee e no Mercado Livre.</p>
+      </div>
+      <form class="pedir-form" id="pedir-form" autocomplete="off">
+        <label class="search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          <input id="pedir-q" type="search" maxlength="80" placeholder="Ex.: air fryer, fone bluetooth…" aria-label="Produto que você procura" required>
+        </label>
+        <button class="cta" type="submit" id="pedir-btn">Buscar oferta</button>
+      </form>
+    </div>
+    <p class="pedir-msg" id="pedir-msg" role="status" aria-live="polite"></p>
+    <div class="grid pedir-grid" id="pedir-grid"></div>
+    <div class="more-wrap" id="pedir-ml-wrap" hidden><button type="button" id="pedir-ml">Buscar também no Mercado Livre <small>(uns 30 segundos)</small></button></div>
+    <div class="grid pedir-grid" id="pedir-grid-ml"></div>
   </section>
 
   <section class="block" id="como-funciona" aria-labelledby="como-title">
@@ -522,7 +564,11 @@ function render() {
       <div><b>Novas ofertas chegando!</b><p>As promoções postadas no nosso grupo aparecem aqui automaticamente. Entre no grupo para receber na hora.</p></div>
       <a class="cta" href="https://t.me/ThariOfertas" target="_blank" rel="noopener">Entrar no grupo grátis</a></div>`;
   } else if (!lista.length) {
-    grid.innerHTML = `<div class="empty-state small"><div><b>Nenhuma oferta aqui ainda</b><p>Tente outra palavra ou outro nicho.</p></div></div>`;
+    grid.innerHTML = q && buscaNoAr
+      ? `<div class="empty-state"><span class="big" aria-hidden="true">🔎</span>
+          <div><b>Não temos “${esc(busca.trim())}” nas ofertas do dia</b><p>Mas a gente pode buscar a melhor oferta agora nas lojas.</p></div>
+          <button type="button" class="cta" id="pedir-daqui">Buscar nas lojas agora</button></div>`
+      : `<div class="empty-state small"><div><b>Nenhuma oferta aqui ainda</b><p>Tente outra palavra ou outro nicho.</p></div></div>`;
   } else {
     grid.innerHTML = lista.slice(0, mostrando).map(card).join('');
   }
@@ -556,6 +602,106 @@ document.getElementById('grid').addEventListener('click', async e => {
 // sombra na barra de filtros quando ela gruda no topo
 const tb = document.getElementById('toolbar');
 new IntersectionObserver(([e]) => tb.classList.toggle('stuck', e.intersectionRatio < 1), {rootMargin: '-69px 0px 0px 0px', threshold: [1]}).observe(tb);
+
+// ---------- Não encontrou? Busca na hora (servidor do Thari; a seção só aparece se ele estiver no ar) ----------
+const BUSCA_API = (() => {
+  const a = qs.get('busca_api');  // só para testar no próprio PC
+  return a && /^http:\/\/(127\.0\.0\.1|localhost):\d+$/.test(a) ? a : 'https://busca.thariofertas.com.br';
+})();
+let buscaNoAr = false, pedirUltima = '';
+const $p = id => document.getElementById(id);
+
+function pedirAviso(texto, tipo) {
+  const m = $p('pedir-msg');
+  m.className = 'pedir-msg' + (tipo === 'erro' ? ' erro' : '');
+  m.innerHTML = (tipo === 'carregando' ? '<span class="spin" aria-hidden="true"></span>' : '') + esc(texto);
+}
+
+function pedirApi(url, espera = 30000) {
+  const ctrl = new AbortController(), t = setTimeout(() => ctrl.abort(), espera);
+  return fetch(BUSCA_API + url, {signal: ctrl.signal})
+    .then(r => r.json().catch(() => ({})).then(d => { if (!r.ok) throw new Error(d.erro || 'Busca indisponível agora.'); return d; }),
+          () => { throw new Error('A busca está fora do ar no momento. Tente mais tarde.'); })
+    .finally(() => clearTimeout(t));
+}
+
+function cardBusca(o) {
+  const ml = /mercado/i.test(o.loja);
+  const off = o.preco_original ? Math.round((1 - o.preco / o.preco_original) * 100) : (o.desconto || 0);
+  const meta = [o.nota > 0 && o.nota <= 5 ? `★ ${Number(o.nota).toFixed(1)}` : '', o.vendas ? `${Number(o.vendas).toLocaleString('pt-BR')} vendidos` : '']
+    .filter(Boolean).join(' · ');
+  const img = o.imagem
+    ? `<div class="thumb"><img src="${esc(o.imagem)}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null;this.parentNode.classList.add('empty');this.src='logo-96.png'"></div>`
+    : `<div class="thumb empty"><img src="logo-96.png" alt="" loading="lazy"></div>`;
+  return `<article class="card">
+    ${img}
+    ${off >= 5 ? `<span class="off">-${off}%</span>` : ''}
+    <span class="loja ${ml ? 'ml' : 'shopee'}">${esc(o.loja)}</span>
+    <div class="body">
+      <h3><a class="card-link" href="${esc(safeUrl(o.link))}" target="_blank" rel="sponsored nofollow noopener" data-goatcounter-click="busca-${ml ? 'ml' : 'shopee'}" data-goatcounter-title="${esc(o.titulo)}">${esc(o.titulo)}</a></h3>
+      <div class="prices">
+        <span class="was">${o.preco_original ? brl(o.preco_original) : (off >= 5 ? `<b style="text-decoration:none;display:inline-block;color:#0f8a3c">${off}% OFF na loja</b>` : '')}</span>
+        <span class="now">${brl(o.preco)}${o.preco_original ? `<small>economize ${brl(o.preco_original - o.preco)}</small>` : ''}</span>
+      </div>
+      ${meta ? `<span class="meta">${meta}</span>` : ''}
+      <div class="actions"><span class="buy" aria-hidden="true">Ver oferta <span>→</span></span></div>
+    </div>
+  </article>`;
+}
+
+function pedirBuscar(q) {
+  q = q.trim();
+  if (q.length < 2) { pedirAviso('Digite pelo menos 2 letras.', 'erro'); return; }
+  pedirUltima = q;
+  $p('pedir-btn').disabled = true;
+  $p('pedir-grid').innerHTML = ''; $p('pedir-grid-ml').innerHTML = ''; $p('pedir-ml-wrap').hidden = true;
+  pedirAviso('Buscando as melhores ofertas…', 'carregando');
+  pedirApi('/buscar?q=' + encodeURIComponent(q))
+    .then(d => {
+      const ofertas = d.ofertas || [];
+      $p('pedir-grid').innerHTML = ofertas.map(cardBusca).join('');
+      pedirAviso(ofertas.length ? `Melhores ofertas de “${q}” na Shopee:` : `Não achamos “${q}” na Shopee. Tente no Mercado Livre:`);
+      $p('pedir-ml-wrap').hidden = false;
+    })
+    .catch(e => pedirAviso(e.message, 'erro'))
+    .finally(() => { $p('pedir-btn').disabled = false; });
+}
+
+function pedirMercadoLivre() {
+  const q = pedirUltima; if (!q) return;
+  $p('pedir-ml-wrap').hidden = true;
+  pedirAviso('Buscando no Mercado Livre… (uns 30 segundos)', 'carregando');
+  pedirApi('/ml?q=' + encodeURIComponent(q)).then(d => {
+    const fim = Date.now() + 5 * 60 * 1000;
+    (function esperar() {
+      pedirApi('/ml/' + d.id).then(p => {
+        if (pedirUltima !== q) return;  // a pessoa já buscou outra coisa
+        if (p.estado === 'pronto') {
+          const ofertas = p.ofertas || [];
+          $p('pedir-grid-ml').innerHTML = ofertas.map(cardBusca).join('');
+          pedirAviso(ofertas.length ? `Melhores ofertas de “${q}”:` : `Não achamos “${q}” no Mercado Livre.`);
+        } else if (p.estado === 'erro') {
+          pedirAviso('Não consegui buscar no Mercado Livre agora. Tente mais tarde.', 'erro');
+        } else if (Date.now() > fim) {
+          pedirAviso('O Mercado Livre demorou demais. Tente de novo mais tarde.', 'erro');
+        } else {
+          if (p.estado === 'na_fila') pedirAviso('Na fila do Mercado Livre… já já é a sua vez.', 'carregando');
+          setTimeout(esperar, 3000);
+        }
+      }).catch(e => pedirAviso(e.message, 'erro'));
+    })();
+  }).catch(e => pedirAviso(e.message, 'erro'));
+}
+
+$p('pedir-form').addEventListener('submit', e => { e.preventDefault(); pedirBuscar($p('pedir-q').value); });
+$p('pedir-ml').addEventListener('click', pedirMercadoLivre);
+document.getElementById('grid').addEventListener('click', e => {
+  if (!e.target.closest('#pedir-daqui')) return;
+  $p('pedir-q').value = busca.trim();
+  $p('pedir').scrollIntoView({behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'});
+  pedirBuscar(busca);
+});
+pedirApi('/saude', 5000).then(() => { buscaNoAr = true; $p('pedir').hidden = false; if (produtos.length) render(); }).catch(() => {});
 
 fetch('products.json?v=' + Math.floor(Date.now() / 300000))
   .then(r => r.ok ? r.json() : Promise.reject(r.status))
