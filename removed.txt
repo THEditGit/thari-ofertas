@@ -54,3 +54,35 @@ ml-f52e0183a610  # 2026-11-25 link de afiliado leva a perfil vazio
 ml-c0f57f796853  # 2026-11-25 link de afiliado leva a perfil vazio
 ml-4ae5e028a779  # 2026-11-25 link de afiliado leva a perfil vazio
 ml-27067ed3a41d  # 2026-11-25 link de afiliado leva a perfil vazio
+ml-70998010f20c  # 2026-11-28 preço subiu de 369.90 para 429.90
+ml-ee0656032bda  # 2026-11-28 preço subiu de 12.99 para 18.49
+ml-2c2d16ccd2c1  # 2026-11-28 preço subiu de 139.99 para 163.80
+ml-46f23d765a5a  # 2026-11-28 preço subiu de 42.66 para 44.90
+ml-8e007c0b42e2  # 2026-11-28 preço subiu de 71.99 para 79.00
+ml-e8a5fb0a16d3  # 2026-11-28 preço subiu de 155.90 para 201.90
+ml-981170f197ab  # 2026-11-28 preço subiu de 23.30 para 25.99
+ml-89f1ebee7b8d  # 2026-11-28 preço subiu de 109.90 para 119.90
+ml-c82c0bc4bec1  # 2026-11-28 preço subiu de 39.90 para 56.70
+ml-558282c3e8c2  # 2026-11-28 preço subiu de 38.99 para 43.99
+ml-55ad6b630a33  # 2026-11-28 preço subiu de 172.42 para 224.90
+ml-bfcf33517b54  # 2026-11-28 preço subiu de 101.91 para 107.91
+ml-b31119a30a49  # 2026-11-28 preço subiu de 156.39 para 169.99
+ml-062777e6f6d4  # 2026-11-28 preço subiu de 149.90 para 169.00
+ml-f2569fd9ad64  # 2026-11-28 preço subiu de 161.50 para 179.90
+ml-53963cca5feb  # 2026-11-28 preço subiu de 4537.84 para 5439.00
+ml-c817f27dd415  # 2026-11-28 link de afiliado leva a perfil vazio
+ml-b280330fb71c  # 2026-11-28 preço subiu de 162.00 para 180.00
+ml-72e1d0bdcba6  # 2026-11-28 preço subiu de 153.00 para 166.00
+ml-a8d0f282731a  # 2026-11-28 preço subiu de 66.39 para 69.90
+ml-9acf685fec63  # 2026-11-28 preço subiu de 162.45 para 279.00
+ml-2eeec1dec347  # 2026-11-28 preço subiu de 161.40 para 179.55
+ml-52d9c46454fa  # 2026-11-28 preço subiu de 1305.72 para 1477.00
+ml-35de2e07a792  # 2026-11-28 preço subiu de 835.12 para 949.00
+ml-85bb6268ece5  # 2026-11-28 preço subiu de 323.38 para 360.99
+ml-2567384c35e7  # 2026-11-28 preço subiu de 361.00 para 417.05
+ml-c908ba50d618  # 2026-11-28 indisponível
+ml-49e8382d76ad  # 2026-11-28 preço subiu de 108.00 para 126.40
+ml-e27ac2a61b46  # 2026-11-28 preço subiu de 2899.90 para 3199.00
+ml-3851f9303ef3  # 2026-11-28 preço subiu de 653.13 para 753.82
+ml-f990f8025b6c  # 2026-11-28 preço subiu de 79.90 para 103.90
+ml-897348a95a29  # 2026-11-28 preço subiu de 197.69 para 279.90
